@@ -1,5 +1,12 @@
-import React from 'react';
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import React from "react";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
 
 export default function Footer() {
   return (
@@ -8,10 +15,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Logo and About */}
           <div>
-            <h2 className="text-2xl font-bold text-[#a7800a] mb-4">Kanak White</h2>
+            <h2 className="text-2xl font-bold text-[#a7800a] mb-4">
+              GodrejShine Paints
+            </h2>
             <p className="text-gray-400 mb-4">
-              Leading manufacturer of premium quality cement and wall putty products.
-              Committed to excellence in construction materials since 2024.
+              Our products are designed to give your walls lasting strength,
+              smooth finish, and vibrant colors that stand the test of time.
+              From wall putty to emulsions, distempers, and primers — we bring
+              quality and durability together to beautify every space.
             </p>
           </div>
 
@@ -21,15 +32,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center">
                 <MapPin className="w-5 h-5 mr-2 text-[#a7800a]" />
-                <span>123 Construction Avenue, Building City, 12345</span>
+                <span>Kanak White India Pvt. Ltd. , Ghaziabad.</span>
               </div>
               <div className="flex items-center">
                 <Phone className="w-5 h-5 mr-2 text-[#a7800a]" />
-                <span>+1 234 567 8900</span>
+                <span>+91 8423843523</span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-5 h-5 mr-2 text-[#a7800a]" />
-                <span>info@kanakwhite.com</span>
+                <span>godrejshinepaints.com</span>
               </div>
             </div>
 
@@ -41,7 +52,10 @@ export default function Footer() {
               <a href="#" className="hover:text-[#a7800a] transition-colors">
                 <Twitter className="w-6 h-6" />
               </a>
-              <a href="#" className="hover:text-[#a7800a] transition-colors">
+              <a
+                href="https://www.instagram.com/godrejshine.paints/"
+                className="hover:text-[#a7800a] transition-colors"
+              >
                 <Instagram className="w-6 h-6" />
               </a>
             </div>
@@ -49,11 +63,12 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+        {/* <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} Kanak White. All Rights Reserved ®
+            © {new Date().getFullYear()} GodrejShine Paints. All Rights Reserved
+            ®
           </p>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
