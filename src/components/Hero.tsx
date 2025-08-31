@@ -21,8 +21,8 @@ export default function Hero() {
             Building Tomorrow with Quality Today
           </h1>
           <p className="text-xl text-gray-200 mb-8">
-            Premium cement and wall putty solutions for lasting construction
-            excellence
+            Premium paints , cement and wall putty solutions for lasting
+            construction and excellence
           </p>
           <button className="bg-[#a7800a] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#8e6c08] transition-colors">
             Explore Products
