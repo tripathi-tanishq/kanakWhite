@@ -7,6 +7,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -32,10 +33,16 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center">
                 <MapPin className="w-5 h-5 mr-2 text-[#a7800a]" />
-                <span>Kanak White India Pvt. Ltd. , Ghaziabad.</span>
+                <span>
+                  KANAK'S WHITE INDIA PVT. LTD.
+                  <br />
+                  Corporate Office : PO-Bisnoli, Dist-Gautam Budhanagar,
+                  <br />
+                  U.P.-201009
+                </span>
               </div>
               <div className="flex items-center">
-                <Phone className="w-5 h-5 mr-2 text-[#a7800a]" />
+                <FaWhatsapp className="w-5 h-5 mr-2 text-[#a7800a]" />
                 <span>+91 8423843523</span>
               </div>
               <div className="flex items-center">
