@@ -14,7 +14,6 @@ function App() {
   useEffect(() => {
     // Always show the popup when the page loads or refreshes
     loadGA();
-    console.log("test");
     setShowWelcomePopup(true);
   }, []);
 
