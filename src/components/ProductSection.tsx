@@ -79,27 +79,6 @@ export default function ProductSection() {
             </div>
           ))}
         </div>
-
-        {/* Product Specialties */}
-        <div className="mt-16 bg-white rounded-lg shadow-lg p-8">
-          <h3 className="text-2xl font-bold mb-6">Product Specialties</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              "Superior Bonding Strength",
-              "Weather Resistant",
-              "Crack Resistant",
-              "Smooth Finish",
-              "Extended Durability",
-              "Eco-Friendly Formula",
-              "Premium Quality Standards",
-            ].map((specialty) => (
-              <div key={specialty} className="flex items-center">
-                <Check className="w-5 h-5 text-[#a7800a] mr-2" />
-                <span>{specialty}</span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
