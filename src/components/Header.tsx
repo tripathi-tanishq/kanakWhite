@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "../../src/assets/logo/main_logo_webp.webp";
 import mainLogo from "../../src/assets/logo/mainLogo.jpeg";
+import { Link } from "react-router-dom";
 
+// Product menu with nested structure
 const productMenu = {
   Emulsions: {
     Interior: ["20L", "10L", "4L", "1L"],
@@ -30,18 +32,23 @@ export default function Header() {
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Left Logo */}
         <div className="flex items-center space-x-4">
-          <img
-            src={logo}
-            alt="Main Logo"
-            className="h-12 w-auto object-contain"
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Main Logo"
+              className="h-12 w-auto object-contain"
+            />
+          </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#home" className="hover:text-[#a7800a]">
+          {/* Home */}
+          <Link to="/" className="hover:text-[#a7800a]">
             Home
-          </a>
+          </Link>
+
+          {/* Products Menu */}
           <div className="relative group">
             <button
               className="flex items-center hover:text-[#a7800a]"
@@ -49,7 +56,6 @@ export default function Header() {
             >
               Products <ChevronDown className="ml-1 w-4 h-4" />
             </button>
-
             {activeMenu === "products" && (
               <div
                 className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2"
@@ -64,6 +70,7 @@ export default function Header() {
 
                   return (
                     <div key={category} className="relative group/sub">
+                      {/* Category Button */}
                       <button
                         className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center justify-between"
                         onMouseEnter={() => setActiveSubmenu(category)}
@@ -72,6 +79,7 @@ export default function Header() {
                         {subMenu && <ChevronDown className="w-4 h-4" />}
                       </button>
 
+                      {/* Submenu */}
                       {activeSubmenu === category &&
                         subMenu &&
                         typeof subMenu === "object" && (
@@ -86,6 +94,7 @@ export default function Header() {
                                     {subCategory}
                                   </button>
 
+                                  {/* Sizes */}
                                   {Array.isArray(products) && (
                                     <div className="absolute left-full top-0 w-48 bg-white shadow-lg rounded-md py-2 hidden group-hover/subsub:block">
                                       {products.map((product) => (
@@ -113,15 +122,45 @@ export default function Header() {
             )}
           </div>
 
-          <a href="#gallery" className="hover:text-[#a7800a]">
+          {/* About Us Menu */}
+          <div className="relative group">
+            <button
+              className="flex items-center hover:text-[#a7800a]"
+              onMouseEnter={() => setActiveMenu("about")}
+            >
+              About Us <ChevronDown className="ml-1 w-4 h-4" />
+            </button>
+            {activeMenu === "about" && (
+              <div
+                className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md py-2"
+                onMouseLeave={() => setActiveMenu(null)}
+              >
+                <Link
+                  to="/introduction"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Introduction
+                </Link>
+                <Link
+                  to="/mission-vision"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Mission & Vision
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Other Section Links */}
+          <Link to="/#gallery" className="hover:text-[#a7800a]">
             Gallery
-          </a>
-          <a href="#faq" className="hover:text-[#a7800a]">
+          </Link>
+          <Link to="/#faq" className="hover:text-[#a7800a]">
             FAQ's
-          </a>
-          <a href="#contact" className="hover:text-[#a7800a]">
+          </Link>
+          <Link to="/#contact" className="hover:text-[#a7800a]">
             Contact Us
-          </a>
+          </Link>
         </div>
 
         {/* Right Secondary Logo */}
@@ -146,24 +185,129 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden mt-4 px-4">
           <div className="flex flex-col space-y-4">
-            <a href="#home" className="hover:text-[#a7800a]">
+            <Link to="/" className="hover:text-[#a7800a]">
               Home
-            </a>
+            </Link>
+
+            {/* Mobile Products */}
             <div className="space-y-2">
-              <button className="flex items-center hover:text-[#a7800a]">
+              <button
+                className="flex items-center justify-between w-full hover:text-[#a7800a]"
+                onClick={() =>
+                  setActiveMenu(activeMenu === "products" ? null : "products")
+                }
+              >
                 Products <ChevronDown className="ml-1 w-4 h-4" />
               </button>
-              {/* Implement mobile sub-menu if needed */}
+
+              <div
+                className={`overflow-hidden transition-all duration-500 ${
+                  activeMenu === "products" ? "max-h-[1000px]" : "max-h-0"
+                }`}
+              >
+                <div className="pl-4 space-y-2 mt-2">
+                  {Object.keys(productMenu).map((category) => {
+                    const subMenu =
+                      productMenu[category as keyof typeof productMenu];
+                    return (
+                      <div key={category}>
+                        <button
+                          className="flex items-center justify-between w-full py-1 hover:text-[#a7800a]"
+                          onClick={() =>
+                            setActiveSubmenu(
+                              activeSubmenu === category ? null : category
+                            )
+                          }
+                        >
+                          {category}
+                          {subMenu && <ChevronDown className="ml-1 w-4 h-4" />}
+                        </button>
+
+                        <div
+                          className={`overflow-hidden transition-all duration-500 ${
+                            activeSubmenu === category
+                              ? "max-h-[1000px]"
+                              : "max-h-0"
+                          }`}
+                        >
+                          {subMenu && typeof subMenu === "object" && (
+                            <div className="pl-4 space-y-1 mt-1">
+                              {Object.entries(subMenu).map(
+                                ([subCategory, products]) => (
+                                  <div key={subCategory}>
+                                    <span className="block py-1 font-medium text-gray-700">
+                                      {subCategory}
+                                    </span>
+                                    {Array.isArray(products) && (
+                                      <div className="pl-4">
+                                        {products.map((product) => (
+                                          <a
+                                            key={product}
+                                            href={`#${product
+                                              .toLowerCase()
+                                              .replace(" ", "-")}`}
+                                            className="block py-1 text-sm hover:text-[#a7800a]"
+                                          >
+                                            {product}
+                                          </a>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-            <a href="#gallery" className="hover:text-[#a7800a]">
+
+            {/* Mobile About Us */}
+            <div className="space-y-2">
+              <button
+                className="flex items-center justify-between w-full hover:text-[#a7800a]"
+                onClick={() =>
+                  setActiveMenu(activeMenu === "about" ? null : "about")
+                }
+              >
+                About Us <ChevronDown className="ml-1 w-4 h-4" />
+              </button>
+
+              <div
+                className={`overflow-hidden transition-all duration-500 ${
+                  activeMenu === "about" ? "max-h-[500px]" : "max-h-0"
+                }`}
+              >
+                <div className="pl-4 mt-2">
+                  <Link
+                    to="/introduction"
+                    className="block py-1 hover:text-[#a7800a]"
+                  >
+                    Introduction
+                  </Link>
+                  <Link
+                    to="/mission-vision"
+                    className="block py-1 hover:text-[#a7800a]"
+                  >
+                    Mission & Vision
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <Link to="/#gallery" className="hover:text-[#a7800a]">
               Gallery
-            </a>
-            <a href="#faq" className="hover:text-[#a7800a]">
+            </Link>
+            <Link to="/#faq" className="hover:text-[#a7800a]">
               FAQ's
-            </a>
-            <a href="#contact" className="hover:text-[#a7800a]">
+            </Link>
+            <Link to="/#contact" className="hover:text-[#a7800a]">
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       )}
